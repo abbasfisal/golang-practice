@@ -9,6 +9,8 @@ import (
 func main() {
 
 	http.HandleFunc("/", product_controller.Index)
+	http.HandleFunc("/product/create", product_controller.Show)
+	http.HandleFunc("/product/store", product_controller.Store)
 
 	log.Println("\nstart server on port :8080")
 	err := http.ListenAndServe(":8080", nil)

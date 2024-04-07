@@ -27,3 +27,23 @@ func (*ProductModel) FindAll() ([]entities.Product, error) {
 	}
 	return products, nil
 }
+func (*ProductModel) Store(product *entities.Product) bool {
+	db, err := config.GetDb()
+	if err != nil {
+		return false
+	}
+	result, ExeErr := db.Exec("insert into products (name , price , quantity , description) values (? , ? , ? , ? )",
+		product.Name,
+		product.Price,
+		product.Quantity,
+		product.Description,
+	)
+	if ExeErr != nil {
+		return false
+	}
+	rowsAffected, Aerr := result.RowsAffected()
+	if Aerr != nil {
+		return false
+	}
+	return rowsAffected > 0
+}
