@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>product list</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+
+    {{range .products}}
+    <tr>
+        <td>{{.Id}}</td>
+        <td>{{.Name}}</td>
+        <td>{{.Price}}</td>
+        <td>{{.Quantity}}</td>
+        <td>{{.Description}}</td>
+        <td>edit | Delete</td>
+    </tr>
+
+    {{end}}
+</table>
+<h3>Product List</h3>
+</body>
+</html>

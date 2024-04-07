@@ -14,6 +14,8 @@ func GetDb() (db *sql.DB, err error) {
 		log.Fatal("\nDb : connection failed \n ", err.Error())
 	}
 
+	log.Println("\nDb: connected successfully ")
+
 	db.SetConnMaxLifetime(time.Minute * 3)
 	db.SetMaxOpenConns(10)
 	db.SetMaxIdleConns(10)

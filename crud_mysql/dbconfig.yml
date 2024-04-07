@@ -1,0 +1,5 @@
+production:
+  dialect: mysql
+  datasource: root:root@(localhost:3306)/gopractice?parseTime=true
+  dir: migrations/
+  table: migrations
