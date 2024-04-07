@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func getDb() (db *sql.DB, err error) {
+func GetDb() (db *sql.DB, err error) {
 
 	db, err = sql.Open("mysql", "root:root@/gopractice")
 	if err != nil {
