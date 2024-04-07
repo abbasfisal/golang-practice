@@ -47,3 +47,19 @@ func (*ProductModel) Store(product *entities.Product) bool {
 	}
 	return rowsAffected > 0
 }
+
+func (*ProductModel) Delete(id int64) bool {
+	db, err := config.GetDb()
+	if err != nil {
+		return false
+	}
+	res, Eerr := db.Exec("delete from products where id = ? ", id)
+	if Eerr != nil {
+		return false
+	}
+	rowsAffected, AfErr := res.RowsAffected()
+	if AfErr != nil {
+		return false
+	}
+	return rowsAffected > 0
+}

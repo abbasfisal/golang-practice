@@ -11,6 +11,7 @@ func main() {
 	http.HandleFunc("/", product_controller.Index)
 	http.HandleFunc("/product/create", product_controller.Show)
 	http.HandleFunc("/product/store", product_controller.Store)
+	http.HandleFunc("/product/delete", product_controller.Delete)
 
 	log.Println("\nstart server on port :8080")
 	err := http.ListenAndServe(":8080", nil)

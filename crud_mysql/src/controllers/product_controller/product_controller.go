@@ -46,3 +46,18 @@ func Store(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
+
+func Delete(w http.ResponseWriter, r *http.Request) {
+
+	id := r.URL.Query().Get("id")
+
+	var pModel models.ProductModel
+
+	parseID, err := strconv.ParseInt(id, 10, 64)
+	if err != nil {
+		return
+	}
+	pModel.Delete(parseID)
+
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
