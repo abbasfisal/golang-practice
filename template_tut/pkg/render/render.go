@@ -7,7 +7,7 @@ import (
 )
 
 func ParseTemplate(w http.ResponseWriter, tmplPath string) {
-	tmpl, err := template.ParseFiles(tmplPath)
+	tmpl, err := template.ParseFiles(tmplPath, "./templates/base.layout.html")
 	if err != nil {
 		log.Fatal(err)
 	}
