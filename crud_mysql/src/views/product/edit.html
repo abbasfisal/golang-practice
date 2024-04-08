@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit product</title>
+</head>
+<body>
+<h3>Edit Product </h3>
+
+
+<form action="product/update" method="POST">
+    <input type="hidden" value="{{.product.Id}}"  name="id"><br>
+    <input type="text" value="{{.product.Name}}" placeholder="name" name="name"><br>
+    <input type="text" value="{{.product.Price}}" placeholder="price" name="price"><br>
+    <input type="text" value="{{.product.Quantity}}" placeholder="quantity" name="quantity"><br>
+    <textarea name="description" cols="30" rows="10">{{.product.Description}}</textarea><br>
+    <input type="submit" value="submit">
+</form>
+
+
+</body>
+</html>

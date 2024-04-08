@@ -61,3 +61,25 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
+
+func Edit(w http.ResponseWriter, r *http.Request) {
+	id := r.URL.Query().Get("id")
+	var pModel models.ProductModel
+
+	parseID, _ := strconv.ParseInt(id, 10, 64)
+
+	product, err := pModel.Find(parseID)
+	if err != nil {
+		return
+	}
+	data := map[string]interface{}{
+		"product": product,
+	}
+	log.Println(data)
+	tmpl, err := template.ParseFiles("src/views/product/edit.html")
+	if err != nil {
+		log.Fatal(err)
+	}
+	tmpl.Execute(w, data)
+
+}

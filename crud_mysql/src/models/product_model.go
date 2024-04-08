@@ -27,6 +27,24 @@ func (*ProductModel) FindAll() ([]entities.Product, error) {
 	}
 	return products, nil
 }
+
+func (*ProductModel) Find(id int64) (entities.Product, error) {
+	db, err := config.GetDb()
+	if err != nil {
+		return entities.Product{}, err
+	}
+	rows, err := db.Query("select * from products where id = ? ", id)
+	if err != nil {
+		return entities.Product{}, err
+	}
+
+	var p entities.Product
+	for rows.Next() {
+		rows.Scan(&p.Id, &p.Name, &p.Price, &p.Quantity, &p.Description)
+	}
+	return p, nil
+}
+
 func (*ProductModel) Store(product *entities.Product) bool {
 	db, err := config.GetDb()
 	if err != nil {
@@ -37,6 +55,28 @@ func (*ProductModel) Store(product *entities.Product) bool {
 		product.Price,
 		product.Quantity,
 		product.Description,
+	)
+	if ExeErr != nil {
+		return false
+	}
+	rowsAffected, Aerr := result.RowsAffected()
+	if Aerr != nil {
+		return false
+	}
+	return rowsAffected > 0
+}
+
+func (*ProductModel) Update(product *entities.Product) bool {
+	db, err := config.GetDb()
+	if err != nil {
+		return false
+	}
+	result, ExeErr := db.Exec("update products set name=? , price=? , quantity=? , description=? where id = ?",
+		product.Name,
+		product.Price,
+		product.Quantity,
+		product.Description,
+		product.Id,
 	)
 	if ExeErr != nil {
 		return false
