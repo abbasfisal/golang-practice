@@ -6,6 +6,6 @@ import (
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	tmpl, _ := template.ParseFiles("src/views/category/index.html")
+	tmpl, _ := template.ParseFiles("src/views/admin/category/index.html")
 	tmpl.Execute(w, nil)
 }

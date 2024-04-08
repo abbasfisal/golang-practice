@@ -12,7 +12,7 @@ func AuthMiddleware(f http.HandlerFunc) http.HandlerFunc {
 		session, _ := store.Get(r, "mysession")
 		username := session.Values["username"]
 		if username == nil {
-			http.Redirect(w, r, "/login", http.StatusSeeOther)
+			http.Redirect(w, r, "/admin/login", http.StatusSeeOther)
 		}
 		f(w, r)
 	}
