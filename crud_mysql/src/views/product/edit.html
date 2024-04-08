@@ -11,7 +11,7 @@
 <h3>Edit Product </h3>
 
 
-<form action="product/update" method="POST">
+<form action="/product/update" method="POST">
     <input type="hidden" value="{{.product.Id}}"  name="id"><br>
     <input type="text" value="{{.product.Name}}" placeholder="name" name="name"><br>
     <input type="text" value="{{.product.Price}}" placeholder="price" name="price"><br>

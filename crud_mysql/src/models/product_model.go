@@ -67,10 +67,12 @@ func (*ProductModel) Store(product *entities.Product) bool {
 }
 
 func (*ProductModel) Update(product *entities.Product) bool {
+
 	db, err := config.GetDb()
 	if err != nil {
 		return false
 	}
+
 	result, ExeErr := db.Exec("update products set name=? , price=? , quantity=? , description=? where id = ?",
 		product.Name,
 		product.Price,

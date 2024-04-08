@@ -83,3 +83,19 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, data)
 
 }
+
+func Update(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+
+	var product entities.Product
+	product.Id, _ = strconv.ParseInt(r.Form.Get("id"), 10, 64)
+	product.Name = r.Form.Get("name")
+	product.Price, _ = strconv.ParseFloat(r.Form.Get("price"), 64)
+	product.Quantity, _ = strconv.ParseInt(r.Form.Get("quantity"), 10, 64)
+	product.Description = r.Form.Get("description")
+
+	var pModel models.ProductModel
+	pModel.Update(&product)
+
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
